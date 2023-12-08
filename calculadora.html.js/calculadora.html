@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CALCULADORA</title>
+    <style>
+    #resultado {
+        overflow: auto; /* resultado */
+    }
+    </style>
 </head>
 <link rel="stylesheet" href="calc.css">
 
@@ -41,23 +46,18 @@
                 <tr>
                     <td colspan="2"><button class="bt-zero" onclick="insert('0')">0</button></td>
                     <td><button class="botao" onclick="insert('.')">.</button></td>
-                    
-                    
                 </tr>
-
-
-
             </table>
-
         </div>
-
         <footer>&copy; 2023 MARIO HENRIQUE DEV</footer>
     </div>
     <script>
         function insert(num)
         {
            var numero = document.getElementById('resultado').innerHTML;
-           document.getElementById('resultado').innerHTML = numero + num;
+           if(numero.length < 200) { // Limita a 200 o número de caracteres que podem ser inseridos
+               document.getElementById('resultado').innerHTML = numero + num;
+           }
         }
         function clean()
         {
@@ -80,8 +80,6 @@
                 document.getElementById('resultado').innerHTML = ""
             }
         }
-    
     </script>
-    
 </body>
 </html>
