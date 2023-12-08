@@ -213,6 +213,13 @@ body {
     filter: brightness(1);
     transform: scale(1.5);
 }
+.person-content div footer {
+    position: absolute;
+    top: 95%;
+    left: 16%;
+    transform: translate( -50%, -50%);
+    color: aliceblue;
+}
 
 
 @keyframes written_text {
