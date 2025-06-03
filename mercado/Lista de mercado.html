@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function adicionarItem() {
+            const ul = document.getElementById('lista');
+            const input = document.getElementById('novoItem');
+            const valor = input.value.trim();
+            if (valor !== "") {
+                const li = document.createElement('li');
+                li.innerHTML = `<input type="checkbox"> ${valor} <button onclick="removerItem(this)">Excluir</button>`;
+                ul.appendChild(li);
+                input.value = "";
+            }
+        }
+
+        function removerItem(botao) {
+            botao.parentElement.remove();
+        }
+    </script>
+</head>
+<body>
+    <h1>Lista de Supermercado</h1>
+    <input type="text" id="novoItem" placeholder="Novo item">
+    <button onclick="adicionarItem()">Adicionar</button>
+    <ul id="lista">
+        <li><input type="checkbox"> Arroz <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Feijão <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Macarrão <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Leite <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Pão <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Ovos <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Queijo <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Frango <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Banana <button onclick="removerItem(this)">Excluir</button></li>
+        <li><input type="checkbox"> Tomate <button onclick="removerItem(this)">Excluir</button></li>
+    </ul>
+    <footer style="text-align:center; margin-top:20px; position:fixed; bottom:0; left:0; width:100%; background:#fff;">
+        <small style="font-size:2em; color:#001f3f;"> &copy; 2025 Dev2022!. Todos os direitos reservados.</small>
+    </footer>
+</body>
+</html>

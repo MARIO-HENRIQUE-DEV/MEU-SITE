@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo da Velha</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; }
+    #board { display: grid; grid-template-columns: repeat(3, 60px); gap: 5px; margin: 20px auto; width: max-content; }
+    .cell { width: 60px; height: 60px; font-size: 2em; cursor: pointer; background: #f0f0f0; border: 1px solid #888; display: flex; align-items: center; justify-content: center; }
+    .x { color: red; font-weight: bold; font-size: 2em; }
+    .o { color: blue; font-weight: bold; font-size: 2.3em; line-height: 1; display: inline-block; }
+    #score { margin: 20px; }
+    button { margin-top: 10px; padding: 8px 16px; font-size: 1em; }
+    footer { margin-top: 20px; color: #888; }
+  </style>
+</head>
+<body>
+  <h1>Jogo da Velha</h1>
+  <div id="score">
+    <span>Jogador X: <span id="scoreX">0</span></span> |
+    <span>Jogador O: <span id="scoreO">0</span></span>
+  </div>
+  <div id="board"></div>
+  <div id="status"></div>
+  <button onclick="resetGame()">Reiniciar</button>
+  <footer>
+    &copy; 2025 Dev2022!. Todos os direitos reservados.
+  </footer>
+  <script>
+    let board = ['', '', '', '', '', '', '', '', ''];
+    let currentPlayer = 'X';
+    let score = { X: 0, O: 0 };
+    let gameActive = true;
+
+    const boardDiv = document.getElementById('board');
+    const statusDiv = document.getElementById('status');
+    const scoreX = document.getElementById('scoreX');
+    const scoreO = document.getElementById('scoreO');
+
+    function renderBoard() {
+      boardDiv.innerHTML = '';
+      board.forEach((cell, idx) => {
+        const cellDiv = document.createElement('div');
+        cellDiv.className = 'cell';
+        if (cell === 'X') {
+          cellDiv.innerHTML = '<span class="x">X</span>';
+        } else if (cell === 'O') {
+          cellDiv.innerHTML = '<span class="o">&#9675;</span>';
+        }
+        cellDiv.onclick = () => handleCellClick(idx);
+        boardDiv.appendChild(cellDiv);
+      });
+    }
+
+    function handleCellClick(idx) {
+      if (!gameActive || board[idx]) return;
+      board[idx] = currentPlayer;
+      renderBoard();
+      if (checkWinner()) {
+        statusDiv.textContent = `Jogador ${currentPlayer} venceu!`;
+        score[currentPlayer]++;
+        updateScore();
+        gameActive = false;
+      } else if (board.every(cell => cell)) {
+        statusDiv.textContent = 'Empate!';
+        gameActive = false;
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        statusDiv.textContent = `Vez do jogador ${currentPlayer}`;
+      }
+    }
+
+    function checkWinner() {
+      const winPatterns = [
+        [0,1,2],[3,4,5],[6,7,8], // linhas
+        [0,3,6],[1,4,7],[2,5,8], // colunas
+        [0,4,8],[2,4,6]          // diagonais
+      ];
+      return winPatterns.some(pattern =>
+        pattern.every(idx => board[idx] === currentPlayer)
+      );
+    }
+
+    function updateScore() {
+      scoreX.textContent = score.X;
+      scoreO.textContent = score.O;
+    }
+
+    function resetGame() {
+      board = ['', '', '', '', '', '', '', '', ''];
+      currentPlayer = 'X';
+      gameActive = true;
+      statusDiv.textContent = `Vez do jogador ${currentPlayer}`;
+      renderBoard();
+    }
+
+    // Inicialização
+    renderBoard();
+    statusDiv.textContent = `Vez do jogador ${currentPlayer}`;
+  </script>
+</body>
+</html>

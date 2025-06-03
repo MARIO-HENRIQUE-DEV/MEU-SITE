@@ -1,0 +1,123 @@
+
+* {
+    margin: 0vh;
+    padding: 0vh;
+    box-sizing: border-box;
+}
+
+
+h1 {
+
+    color: azure;
+    background-color: brown;
+}
+body {
+    
+    display: flex;
+    justify-content: center;
+     width: 50%;
+    position: absolute;
+    align-items: center;
+    min-height: 65%;
+    background: black; 
+       
+
+}
+.nuvem {
+    position: absolute;
+    width: 100px;
+    animation: nuvem-animation 90.5s infinite linear;
+
+}
+.nuvem2 {
+    position: absolute;
+    width: 50px;
+    bottom: 20%;
+    
+    
+    animation: nuvem2-animation 100s infinite linear;
+
+}
+
+
+.estacinado {    /* jacare */
+    position: absolute;
+    bottom: -45%;
+    width: 200px;
+    animation: estacinado-animation 2.5s infinite linear;
+    
+}
+
+.andando {     /* sapo */
+   
+    width: 40px; 
+    position: absolute;
+    bottom: -35%;
+    left: 30px;
+}
+
+.jump {  /* pulo */
+    animation: jump 700ms linear;
+}
+
+/* animação */
+@keyframes estacinado-animation {
+    from {
+        right: -100%;
+    }
+
+    to {
+        right: 110%;
+    }
+}
+@keyframes nuvem-animation {
+    from {
+        right: -85%;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+@keyframes nuvem2-animation {
+    from {
+        right: -30%;
+    }
+
+    to {
+        right: 120%;
+    }
+}
+@keyframes versao-animation {
+    from {
+        right: -50%;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes jump {
+    
+    0% {
+        bottom: -8%;
+    }
+
+    40% {
+        bottom: 55%;
+    }
+
+    50% {
+        bottom: 70%;
+    }
+
+    60% {
+        bottom: 55%;
+    }
+
+    100% {
+        bottom: -8%;
+    }
+
+}
